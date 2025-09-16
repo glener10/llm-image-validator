@@ -7,6 +7,9 @@ from src.gemini import exec_gemini
 from src.args import get_args
 from src.utils.image import get_image_mime_type
 
+#TODO: Exec async https://gemini.google.com/app/e71302c05abbd445?_gl=1*7g3lkp*_ga*MTMxNDcyMDcwLjE3NDkxNjg2ODQ.*_ga_WC57KJ50ZZ*czE3NDkxNjg2ODMkbzEkZzEkdDE3NDkxNjg3NTckajU0JGwwJGgw
+#TODO: Exec gpt
+#TODO: Exec NanoBanana with recommended issues
 
 def main():
     args = get_args()

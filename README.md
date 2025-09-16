@@ -34,7 +34,31 @@ First, check the [dependencies](#dependenciesandenvironment) process
 
 Check the required and optional parameters in the [`src/args.py`](src/args.py) file.
 
-To execute you can run the script using
+You can clean the environment using
+
+```
+$ make clean
+```
+
+Check files format with
+
+```
+$ make lint
+```
+
+Format files with
+
+```
+$ make format
+```
+
+to exec:
+
+```
+$ make run -i './input.jpg'
+```
+
+you can run also using the script
 
 ```
 $ python .\main.py -i './input.jpg'
