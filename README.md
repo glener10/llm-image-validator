@@ -55,7 +55,13 @@ $ make format
 to exec:
 
 ```
-$ make run -i './input.jpg'
+$ make run
+```
+
+Example executing with arguments:
+
+```
+$ make run ARGS="-i \"./input.jpg\""
 ```
 
 you can run also using the script
