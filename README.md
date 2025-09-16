@@ -32,8 +32,6 @@
 
 First, check the [dependencies](#dependenciesandenvironment) process
 
-Check the required and optional parameters in the [`src/args.py`](src/args.py) file.
-
 You can clean the environment using
 
 ```
@@ -57,6 +55,8 @@ to exec:
 ```
 $ make run
 ```
+
+Check the required and optional parameters in the [`src/args.py`](src/args.py) file.
 
 Example executing with arguments:
 

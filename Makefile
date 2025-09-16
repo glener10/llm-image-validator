@@ -1,3 +1,5 @@
+SHELL := $(shell echo $$SHELL)
+
 VENV_DIR = .venv
 VENV_PYTHON = $(VENV_DIR)/bin/python
 VENV_RUFF = $(VENV_DIR)/bin/ruff
