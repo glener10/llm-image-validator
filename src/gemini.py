@@ -1,5 +1,6 @@
 from google import genai
 from google.genai import types
+import json
 
 from src.dtos.llm_response import LLMResponse
 from src.env import get_api_key
@@ -26,4 +27,4 @@ def exec_gemini(model: str, filepath, mime_type: str) -> LLMResponse:
             response_schema=LLMResponse,
         ),
     )
-    return response
+    return LLMResponse(**json.loads(response.text))
