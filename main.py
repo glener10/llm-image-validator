@@ -2,6 +2,7 @@ import datetime
 import pathlib
 from py_compile import main
 
+from src.dtos.response import Response
 from src.gemini import exec_gemini
 from src.args import get_args
 from src.utils.image import get_image_mime_type
@@ -19,13 +20,30 @@ def main():
         "gemini-2.5-flash-lite",
     ]
 
-    gemini_response = []
+    responses = []
     for model in gemini_models_to_execute:
         print(f"🧠 executing model: {model}")
         response = exec_gemini(model, filepath, mime_type)
-        gemini_response.append(response)
+        response_dto = Response(llm_response=response, model=model)
+        responses.append(response_dto)
 
-    print("🤖 all models executed")
+    has_issues = False
+    for response in responses:
+        if not response.llm_response.is_valid:
+            has_issues = True
+
+    if not has_issues:
+        print("🤖 no problem was identified in the image")
+        return
+
+    print("⚠️  issues were identified in the image by at least one model")
+    issues = []
+    for response in responses:
+        if not response.llm_response.is_valid:
+            issues.append(response.llm_response.issues)
+            print(
+                f"⚙️ model {response.model} identifyed the following: {response.llm_response.issues}"
+            )
 
 
 if __name__ == "__main__":
