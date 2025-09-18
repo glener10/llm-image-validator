@@ -3,7 +3,8 @@ import datetime
 import pathlib
 import google.generativeai as genai
 
-from src.env import get_api_key
+from src.openai import exec_openai_async
+from src.env import get_gemini_api_key
 from src.dtos.response import Response
 from src.gemini import exec_gemini_async, generate_new_image
 from src.args import get_args
@@ -15,17 +16,25 @@ async def main():
 
     mime_type = get_image_mime_type(args.input)
     filepath = pathlib.Path(args.input)
-    genai.configure(api_key=get_api_key())
+    genai.configure(api_key=get_gemini_api_key())
 
     gemini_models_to_execute = [
         "gemini-2.5-flash-preview-05-20",
         "gemini-2.5-pro",
         "gemini-2.5-flash-lite",
     ]
+    openai_models_to_execute = [
+        "gpt-4.1-nano",
+    ]
     tasks = [
         exec_gemini_async(model, filepath, mime_type)
         for model in gemini_models_to_execute
     ]
+    tasks += [
+        exec_openai_async(model, filepath, mime_type)
+        for model in openai_models_to_execute
+    ]
+
     results_from_models = await asyncio.gather(*tasks)
     responses = [
         Response(llm_response=result, model=model)
