@@ -9,9 +9,6 @@ from src.gemini import exec_gemini_async, generate_new_image
 from src.args import get_args
 from src.utils.image import get_image_mime_type
 
-# TODO: Exec gpt
-# TODO: Exec NanoBanana with recommended issues
-
 
 async def main():
     args = get_args()
