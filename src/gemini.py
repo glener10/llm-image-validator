@@ -1,5 +1,7 @@
+from io import BytesIO
 import google.generativeai as genai
 from google.generativeai import types
+from PIL import Image
 import json
 
 from src.dtos.llm_response import LLMResponse
@@ -24,3 +26,27 @@ async def exec_gemini_async(model_name: str, filepath, mime_type: str) -> LLMRes
 
     print(f"✅ model finished: {model_name}")
     return LLMResponse(**json.loads(response.text))
+
+
+def generate_new_image(input_path: str, issues: list[str]):
+    prompt_issues = ", ".join(issues)
+    prompt = (
+        "Generate a new version of this image correcting the following issues: "
+        f"{prompt_issues}"
+    )
+    image_input = Image.open(input_path)
+
+    NANO_BANANA_MODEL = "gemini-2.5-flash-image-preview"
+    model = genai.GenerativeModel(model_name=NANO_BANANA_MODEL)
+    response = model.generate_content([prompt, image_input])
+
+    image_parts = [
+        part.inline_data.data
+        for part in response.candidates[0].content.parts
+        if part.inline_data
+    ]
+
+    if image_parts:
+        image = Image.open(BytesIO(image_parts[0]))
+        image.save("output.png")
+        print(f"✅ image saved to output.png")
