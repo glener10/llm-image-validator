@@ -1,30 +1,26 @@
-from google import genai
-from google.genai import types
+import google.generativeai as genai
+from google.generativeai import types
 import json
 
 from src.dtos.llm_response import LLMResponse
-from src.env import get_api_key
 from src.prompt import get_prompt
 
 
-def exec_gemini(model: str, filepath, mime_type: str) -> LLMResponse:
-    prompt = get_prompt()
-    api_key = get_api_key()
-
-    client = genai.Client(api_key=api_key)
-
-    response = client.models.generate_content(
-        model=model,
-        contents=[
-            types.Part.from_bytes(
-                data=filepath.read_bytes(),
-                mime_type=mime_type,
-            ),
-            prompt,
-        ],
-        config=types.GenerateContentConfig(
+async def exec_gemini_async(model_name: str, filepath, mime_type: str) -> LLMResponse:
+    model = genai.GenerativeModel(
+        model_name=model_name,
+        generation_config=types.GenerationConfig(
             response_mime_type="application/json",
             response_schema=LLMResponse,
         ),
     )
+    print(f"🧠 firing model: {model_name}")
+    response = await model.generate_content_async(
+        contents=[
+            {"mime_type": mime_type, "data": filepath.read_bytes()},
+            get_prompt(),
+        ]
+    )
+
+    print(f"✅ model finished: {model_name}")
     return LLMResponse(**json.loads(response.text))
