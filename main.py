@@ -5,7 +5,7 @@ import google.generativeai as genai
 
 from src.env import get_api_key
 from src.dtos.response import Response
-from src.gemini import exec_gemini_async
+from src.gemini import exec_gemini_async, generate_new_image
 from src.args import get_args
 from src.utils.image import get_image_mime_type
 
@@ -49,6 +49,9 @@ async def main():
             print(
                 f"⚙️  model {response.model} identifyed the following: {response.llm_response.issues}"
             )
+
+    print("🖼️  generating new image...")
+    generate_new_image(args.input, issues)
 
 
 if __name__ == "__main__":
