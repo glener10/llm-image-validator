@@ -1,7 +1,6 @@
 import asyncio
 import datetime
 import pathlib
-from py_compile import main
 import google.generativeai as genai
 
 from src.env import get_api_key
