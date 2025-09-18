@@ -1,6 +1,16 @@
 # **llm-image-validator**
 
-<p align="center"> 🚀 This script is designed to validate technical images such as diagrams and flowcharts using different LLM models</p>
+<p align="center"> 🚀 This script is designed to validate technical images such as diagrams and flowcharts using different LLM models and generate a new image correcting any identified issues.</p>
+
+Example of execution without issues:
+
+![example_no_issues](./docs/execution_without_issues_example.png)
+
+Example of execution with issues:
+
+![example_with_issues](./docs/execution_with_issues_example.png)
+
+Check the generated image fixed the identified issues [`docs/image_with_issues_solved`](docs/image_with_issues_solved.png) and the input image with issues in [`input.jpg`](input.jpg)
 
 <h3>🏁 Table of Contents</h3>
 
