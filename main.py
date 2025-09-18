@@ -41,7 +41,10 @@ async def main():
         for model, result in zip(gemini_models_to_execute, results_from_models)
     ]
 
-    has_issues = any(not response.llm_response.is_valid for response in responses)
+    has_issues = any(
+        not response.llm_response.is_valid and response.llm_response.issues != ""
+        for response in responses
+    )
 
     if not has_issues:
         print("🤖 no problem was identified in the image by any model")
@@ -50,7 +53,7 @@ async def main():
     print("⚠️  issues were identified in the image by at least one model")
     issues = []
     for response in responses:
-        if not response.llm_response.is_valid:
+        if not response.llm_response.is_valid and response.llm_response.issues != "":
             issues.append(response.llm_response.issues)
             print(
                 f"⚙️  model {response.model} identifyed the following: {response.llm_response.issues}"
