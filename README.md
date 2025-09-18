@@ -34,7 +34,9 @@ Check the generated image fixed the identified issues [`docs/image_with_issues_s
 
 ## 💻 **Dependencies and Environment**
 
-**Gemini**: This project uses the paid Google Gemini API, it's necessary to [configure a valid Gemini API Key](https://aistudio.google.com/apikey). Ensure you have a `.env` file with the environment variable **API_KEY**.
+**Gemini**: This project uses the paid Google Gemini API, it's necessary to [configure a valid Gemini API Key](https://aistudio.google.com/apikey). Ensure you have a `.env` file with the environment variable **API_KEY_GEMINI** and linked billing account.
+
+**OpenAI**: This project uses the paid OpenAI API, it's necessary to [configure a valid OpenAI API Key](https://platform.openai.com/settings/organization/api-keys). Ensure you have a `.env` file with the environment variable **API_KEY_OPENAI** and linked billing account.
 
 <div id="using"></div>
 
