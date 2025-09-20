@@ -44,43 +44,33 @@ Check the generated image fixed the identified issues [`docs/image_with_issues_s
 
 First, check the [dependencies](#dependenciesandenvironment) process
 
-You can clean the environment using
+Check [`Makefile`](Makefile) to made operations like clear environment, execute tests, lint and format files.
+
+To setup environment use (you will need [venv](https://docs.python.org/pt-br/3.13/library/venv.html)):
 
 ```
-$ make clean
+$ make setup
 ```
 
-Check files format with
+And enable the virtual ambient using:
 
 ```
-$ make lint
+$ source .venv/bin/activate
 ```
 
-Format files with
+You can run using the script
 
 ```
-$ make format
+$ python3 main.py -i './input.jpg'
 ```
 
-to exec:
-
-```
-$ make run
-```
-
-Check the required and optional parameters in the [`src/args.py`](src/args.py) file.
-
-Example executing with arguments:
+Or using makefile:
 
 ```
 $ make run ARGS="-i \"./input.jpg\""
 ```
 
-you can run also using the script
-
-```
-$ python .\main.py -i './input.jpg'
-```
+Check the required and optional parameters in the [`src/args.py`](src/args.py) file.
 
 <div id="author"></div>
 
