@@ -38,14 +38,6 @@ Check the generated image fixed the identified issues [`docs/image_with_issues_s
 
 **OpenAI**: This project uses the paid OpenAI API, it's necessary to [configure a valid OpenAI API Key](https://platform.openai.com/settings/organization/api-keys). Ensure you have a `.env` file with the environment variable **API_KEY_OPENAI** and linked billing account.
 
-<div id="using"></div>
-
-## ☕ **Using**
-
-First, check the [dependencies](#dependenciesandenvironment) process
-
-Check [`Makefile`](Makefile) to made operations like clear environment, execute tests, lint and format files.
-
 To setup environment use (you will need [venv](https://docs.python.org/pt-br/3.13/library/venv.html)):
 
 ```
@@ -58,16 +50,16 @@ And enable the virtual ambient using:
 $ source .venv/bin/activate
 ```
 
+<div id="using"></div>
+
+## ☕ **Using**
+
+First, check the [dependencies](#dependenciesandenvironment) process
+
 You can run using the script
 
 ```
-$ python3 main.py -i './input.jpg'
-```
-
-Or using makefile:
-
-```
-$ make run ARGS="-i \"./input.jpg\""
+$ python main.py -i './input.jpg'
 ```
 
 Check the required and optional parameters in the [`src/args.py`](src/args.py) file.
